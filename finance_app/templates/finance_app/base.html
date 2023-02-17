@@ -2,10 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>About Us</title>
-    <link rel="stylesheet" href = {% static 'finance_app/styles.css' %}>
+    {% if title %}
+        <title>Django Financials - {{ title }}</title>
+    {% else %}
+        <title>Django Financials</title>
+    {% endif %}
 </head>
-{% block content %}
-
-{% endblock  %}
+<body>
+    {% block content %}{% endblock  %}
+</body>
 </html>

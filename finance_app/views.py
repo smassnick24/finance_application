@@ -42,12 +42,14 @@ from finance_app.models import Purchase, Income
 
 def purchase_page(request):
     context = {
+        "title": "Purchases",
         'purchases': Purchase.objects.all()
     }
     return render(request, "finance_app/purchases.html", context)
 
 def income_page(request):
     context = {
+        "title": "Income",
         'incomes': Income.objects.all()
     }
     return render(request, "finance_app/income.html", context)
