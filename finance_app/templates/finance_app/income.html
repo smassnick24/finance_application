@@ -1,7 +1,6 @@
 {% extends "finance_app/base.html"%}
 {% block content%}
     <h1>Income</h1>
-    <p>This is my income page</p>
     <br>
     {% for income in incomes %}
         <h1> {{income.income_source}} </h1>
