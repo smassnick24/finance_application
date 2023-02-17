@@ -4,10 +4,8 @@
     <br>
     {% for purchase in purchases %}
         <h1> {{purchase.purchase_name}} </h1>
-        <p> {{purchase.purchase_description}} </p>
-        <p> {{purchase.amount}} </p>
-        <p> {{purchase.date_purchased}} </p>
-        <p> {{purchase.owner}} </p>
+        <p> <strong>{{purchase.purchase_description}}</strong> at a total of ${{purchase.amount}}</p>
+        <p> This was purchased on: {{purchase.date_purchased}} by {{purchase.owner}}</p>
         <br>
     {% endfor %}
     

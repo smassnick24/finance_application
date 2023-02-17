@@ -4,10 +4,8 @@
     <br>
     {% for income in incomes %}
         <h1> {{income.income_source}} </h1>
-        <p> {{income.income_description}} </p>
-        <p> {{income.amount}} </p>
-        <p> {{income.date_received}} </p>
-        <p> {{income.owner}} </p>
+        <p> <strong>{{income.income_description}}<strong> with a total of ${{income.amount}} </p>
+        <p> This was received on: {{income.date_received}} by {{income.owner}}</p>
         <br>
     {% endfor %}
 
