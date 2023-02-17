@@ -1,10 +1,10 @@
 {% extends "finance_app/base.html"%}
 {% block content%}
-    <h1>Income</h1>
+    <h1 class="display-1">Income</h1>
     <br>
     {% for income in incomes %}
         <h1> {{income.income_source}} </h1>
-        <p> <strong>{{income.income_description}}<strong> with a total of ${{income.amount}} </p>
+        <p> <strong>{{income.income_description}}</strong> with a total of ${{income.amount}} </p>
         <p> This was received on: {{income.date_received}} by {{income.owner}}</p>
         <br>
     {% endfor %}
