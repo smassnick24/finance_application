@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 import datetime
-
+from finance_app.models import Purchase, Income
 # creating dummy data to push to templates for testing
 
 purchase_list = [
@@ -40,12 +40,12 @@ income_list = [
 
 def purchase_page(request):
     context = {
-        'purchases': purchase_list
+        'purchases': Purchase.objects.all()
     }
     return render(request, "finance_app/purchases.html", context)
 
 def income_page(request):
     context = {
-        'incomes': income_list
+        'incomes': Income.objects.all()
     }
     return render(request, "finance_app/income.html", context)
