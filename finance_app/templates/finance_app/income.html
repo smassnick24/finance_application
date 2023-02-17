@@ -1,0 +1,16 @@
+{% block content%}
+<body>
+    <h1>Income</h1>
+    <p>This is my income page</p>
+    <br>
+    {% for income in incomes %}
+        <h1> {{income.income_source}} </h1>
+        <p> {{income.income_description}} </p>
+        <p> {{income.amount}} </p>
+        <p> {{income.date_received}} </p>
+        <p> {{income.owner}} </p>
+        <br>
+    {% endfor %}
+
+</body>
+{% endblock %}

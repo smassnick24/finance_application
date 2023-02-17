@@ -1,0 +1,17 @@
+{% block content%}
+<body>
+    <h1>Purchases</h1>
+    <p>This is my purchase page</p>
+    <br>
+    {% for purchase in purchases %}
+        <h1> {{purchase.purchase_name}} </h1>
+        <p> {{purchase.purchase_description}} </p>
+        <p> {{purchase.amount}} </p>
+        <p> {{purchase.date_purchased}} </p>
+        <p> {{purchase.owner}} </p>
+        <br>
+    {% endfor %}
+    
+
+</body>
+{% endblock %}
