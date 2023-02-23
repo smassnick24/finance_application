@@ -3,10 +3,16 @@
     <h1 class="display-1">Purchases</h1>
     <br>
     {% for purchase in purchases %}
-        <h1> {{purchase.purchase_name}} </h1>
-        <p> <strong>{{purchase.purchase_description}}</strong> at a total of ${{purchase.amount}}</p>
-        <p> This was purchased on: {{purchase.date_purchased}} by {{purchase.owner}}</p>
-        <br>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{purchase.owner}}</a>
+                <small class="text-muted">{{purchase.date_purchased}}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{purchase.purchase_name}}</a></h2>
+            <p class="article-content"><strong>{{purchase.purchase_description}}</strong> with a total of ${{purchase.amount}}</p>
+        <div>
+    </article> 
     {% endfor %}
     
 {% endblock content%}
