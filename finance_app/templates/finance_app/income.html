@@ -3,16 +3,18 @@
     <h1 class="display-1">Income</h1>
     <br>
     {% for income in incomes %}
-        <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{income.owner}}</a>
-                    <small class="text-muted">{{income.date_received}}</small>
-                </div>
-                <h2><a class="article-title" href="#">{{income.income_source}}</a></h2>
-                <p class="article-content"><strong>{{income.income_description}}</strong> with a total of ${{income.amount}}</p>
-            <div>
-        </article> 
+        {% if income.owner == user%}
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="#">{{income.owner}}</a>
+                        <small class="text-muted">{{income.date_received}}</small>
+                    </div>
+                    <h2><a class="article-title" href="#">{{income.income_source}}</a></h2>
+                    <p class="article-content"><strong>{{income.income_description}}</strong> with a total of ${{income.amount}}</p>
+                <div>
+            </article> 
+        {% endif %}
     {% endfor %}
 
 {% endblock content %}

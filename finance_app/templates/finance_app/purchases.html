@@ -3,16 +3,18 @@
     <h1 class="display-1">Purchases</h1>
     <br>
     {% for purchase in purchases %}
-    <article class="media content-section">
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="#">{{purchase.owner}}</a>
-                <small class="text-muted">{{purchase.date_purchased}}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{purchase.purchase_name}}</a></h2>
-            <p class="article-content"><strong>{{purchase.purchase_description}}</strong> with a total of ${{purchase.amount}}</p>
-        <div>
-    </article> 
+        {% if purchase.owner == user%}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{purchase.owner}}</a>
+                    <small class="text-muted">{{purchase.date_purchased}}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{purchase.purchase_name}}</a></h2>
+                <p class="article-content"><strong>{{purchase.purchase_description}}</strong> with a total of ${{purchase.amount}}</p>
+            <div>
+        </article> 
+        {% endif %}
     {% endfor %}
     
 {% endblock content%}

@@ -3,6 +3,7 @@ from django.utils import timezone
 from finance_app.models import Purchase, Income
 from .forms import IncomeForm, PurchaseForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # creating dummy data to push to templates for testing
@@ -41,6 +42,7 @@ from django.contrib import messages
 #     }
 # ]
 
+@login_required
 def purchase_page(request):
     context = {
         "title": "Purchases",
@@ -48,6 +50,7 @@ def purchase_page(request):
     }
     return render(request, "finance_app/purchases.html", context)
 
+@login_required
 def income_page(request):
     context = {
         "title": "Income",
@@ -55,6 +58,7 @@ def income_page(request):
     }
     return render(request, "finance_app/income.html", context)
 
+@login_required
 def register_purchase(request):
     if request.method == "POST":
         form = PurchaseForm(request.POST)
@@ -71,6 +75,7 @@ def register_purchase(request):
         form = PurchaseForm()
     return render(request, "finance_app/register_income_data.html", {"form": form})
 
+@login_required
 def register_income(request):
     if request.method == "POST":
         form = IncomeForm(request.POST)
