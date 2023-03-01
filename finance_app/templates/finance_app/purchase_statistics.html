@@ -1,0 +1,13 @@
+{% extends "finance_app/base.html"%}
+{% block content %}
+<h1 class="display-3">Purchase Statistics</h1>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">Total Spent</a>
+        </div>
+        <h2><a class="article-title" href="#">${{total_spent}}</a></h2>
+        <p class="article-content"><strong>{{variance}}</strong> with a total of ${{total_spent}}</p>
+    <div>
+</article> 
+{% endblock content %}

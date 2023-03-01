@@ -7,6 +7,17 @@ body {
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
   }
+
+  .column {
+    float: left;
+    width: 50%;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
   
   ul {
     margin: 0;
@@ -82,3 +93,4 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+

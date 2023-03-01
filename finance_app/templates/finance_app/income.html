@@ -1,9 +1,9 @@
 {% extends "finance_app/base.html"%}
 {% block content%}
-    <h1 class="display-1">Income</h1>
+    <h1 class="display-3">Income</h1>
     <br>
     {% for income in incomes %}
-        {% if income.owner == user%}
+        {% if income.owner == user %}
             <article class="media content-section">
                 <div class="media-body">
                     <div class="article-metadata">
@@ -16,5 +16,4 @@
             </article> 
         {% endif %}
     {% endfor %}
-
 {% endblock content %}

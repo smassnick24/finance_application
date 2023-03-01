@@ -4,6 +4,7 @@ from finance_app.models import Purchase, Income
 from .forms import IncomeForm, PurchaseForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import statistics as stat
 
 
 # creating dummy data to push to templates for testing
@@ -91,3 +92,55 @@ def register_income(request):
     elif request.method =="GET":
         form = IncomeForm()
     return render(request, "finance_app/register_income_data.html", {"form": form})
+
+@login_required
+def income_statistics_page(request):
+    total_received = 0
+    amount_list = []
+    num_incomes = len(Income.objects.all().filter(owner=request.user))
+    
+    for income in Income.objects.all().filter(owner=request.user): # gathering data for computation
+        total_received += income.amount
+        amount_list.append(income.amount)
+    
+    income_mean = stat.mean(amount_list) # calculating the mean
+    income_median = stat.median(amount_list) # calculating the median
+    income_variance = stat.variance(amount_list) # calculating the variance
+    income_std_dev = stat.stdev(amount_list) # calculating standard deviation
+    
+    context = {
+        "title": "Statistics",
+        "total_received": total_received,
+        "mean_spent": income_mean,
+        "num_incomes": num_incomes,
+        "median": income_median,
+        "variance": income_variance,
+        "standard_deviation": income_std_dev,
+    }
+    return render(request, "finance_app/income_statistics.html", context)
+
+@login_required
+def purchase_statistics_page(request):
+    total_spent = 0
+    amount_list = []
+    num_purchases = len(Purchase.objects.all().filter(owner=request.user))
+    
+    for purchase in Purchase.objects.all().filter(owner=request.user): # gathering data for computation
+        total_spent += purchase.amount
+        amount_list.append(purchase.amount)
+    
+    purchase_mean = stat.mean(amount_list) # calculating the mean
+    purchase_median = stat.median(amount_list) # calculating the median
+    purchase_variance = stat.variance(amount_list) # calculating the variance
+    purchase_std_dev = stat.stdev(amount_list) # calculating standard deviation
+    
+    context = {
+        "title": "Statistics",
+        "total_spent": total_spent,
+        "num_purchases": num_purchases,
+        "mean_spent": purchase_mean,
+        "median": purchase_median,
+        "variance": purchase_variance,
+        "standard_deviation": purchase_std_dev,
+    }
+    return render(request, "finance_app/purchase_statistics.html", context)
