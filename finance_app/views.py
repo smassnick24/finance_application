@@ -102,6 +102,8 @@ def income_statistics_page(request):
     for income in Income.objects.all().filter(owner=request.user): # gathering data for computation
         total_received += income.amount
         amount_list.append(income.amount)
+        
+    amount_list.sort()
     
     income_mean = stat.mean(amount_list) # calculating the mean
     income_median = stat.median(amount_list) # calculating the median
@@ -111,7 +113,7 @@ def income_statistics_page(request):
     context = {
         "title": "Statistics",
         "total_received": total_received,
-        "mean_spent": income_mean,
+        "mean_received": income_mean,
         "num_incomes": num_incomes,
         "median": income_median,
         "variance": income_variance,
@@ -128,6 +130,8 @@ def purchase_statistics_page(request):
     for purchase in Purchase.objects.all().filter(owner=request.user): # gathering data for computation
         total_spent += purchase.amount
         amount_list.append(purchase.amount)
+        
+    amount_list.sort()
     
     purchase_mean = stat.mean(amount_list) # calculating the mean
     purchase_median = stat.median(amount_list) # calculating the median

@@ -6,8 +6,40 @@
         <div class="article-metadata">
             <a class="mr-2" href="#">Total Spent</a>
         </div>
-        <h2><a class="article-title" href="#">${{total_spent}}</a></h2>
-        <p class="article-content"><strong>{{variance}}</strong> with a total of ${{total_spent}}</p>
+        <h3><a class="article-title" href="#">${{total_spent|floatformat:-2}}</a></h3>
+        <p class="article-content">Over a total of {{num_purchases}} purchases</p>
     <div>
 </article> 
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">Purchase Mean</a>
+        </div>
+        <h3><a class="article-title" href="#">${{mean_spent|floatformat:-2}}</a></h3>
+    <div>
+</article> 
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">Purchase Median</a>
+        </div>
+        <h3><a class="article-title" href="#">${{median|floatformat:-2}}</a></h3>
+    <div>
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">Variance of Purchases</a>
+        </div>
+        <h3><a class="article-title" href="#">${{variance|floatformat:-2}}</a></h3>
+    <div>
+</article>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">Standard Deviation of Purchases</a>
+        </div>
+        <h3><a class="article-title" href="#">${{standard_deviation|floatformat:-2}}</a></h3>
+    <div>
+</article>
 {% endblock content %}
