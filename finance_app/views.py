@@ -47,7 +47,7 @@ import statistics as stat
 def purchase_page(request):
     context = {
         "title": "Purchases",
-        'purchases': Purchase.objects.all()
+        'purchases': reversed(Purchase.objects.all())
     }
     return render(request, "finance_app/purchases.html", context)
 
@@ -55,7 +55,7 @@ def purchase_page(request):
 def income_page(request):
     context = {
         "title": "Income",
-        'incomes': Income.objects.all()
+        'incomes': reversed(Income.objects.all())
     }
     return render(request, "finance_app/income.html", context)
 
@@ -95,6 +95,7 @@ def register_income(request):
 
 @login_required
 def income_statistics_page(request):
+    """View to calculate simple statistics on income"""
     total_received = 0
     amount_list = []
     num_incomes = len(Income.objects.all().filter(owner=request.user))
