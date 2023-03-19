@@ -3,7 +3,7 @@
     <h1 class="display-3">Purchases</h1>
     <br>
     {% for purchase in purchases %}
-        {% if purchase.owner == user%}
+       {% if purchase.owner == user %}
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
@@ -14,7 +14,7 @@
                 <p class="article-content"><strong>{{purchase.purchase_description}}</strong> with a total of ${{purchase.amount}}</p>
             <div>
         </article> 
-        {% endif %}
+       {% endif %}
     {% endfor %}
     
 {% endblock content%}

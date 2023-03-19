@@ -10,6 +10,7 @@ class Purchase(models.Model):
     purchase_description = models.TextField()
     amount = models.FloatField()
     date_purchased = models.DateTimeField(default=timezone.now)
+    month_purchased = models.IntegerField(default=timezone.now().month)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -24,6 +25,7 @@ class Income(models.Model):
     income_description = models.TextField()
     amount = models.FloatField()
     date_received = models.DateTimeField(default=timezone.now)
+    month_received = models.IntegerField(default=timezone.now().month)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
