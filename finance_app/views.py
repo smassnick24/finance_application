@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import statistics as stat
 
+def about_page(request):
+    return render(request, "finance_app/about.html")
+
 
 @login_required
 def purchase_page(request):

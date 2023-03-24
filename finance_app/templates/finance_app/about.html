@@ -1,0 +1,39 @@
+{% extends "finance_app/base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="column">
+        <h2>About the Program</h2>
+        <p>
+           This application is a demonstration of the Django Web Framework for Python. The purpose of
+           this program is to provide a solution to tracking finances. Tracking finances puts it in 
+           a bright light because it currently is not as functional as I would want it to be. Right now, 
+           the program puts registered purchases and incomes into a database and spits it back out nice and
+           pretty for the user that is currently authenticated. Then, it also grabs these purchases and incomes
+           and performs elementary statistics and spits the nice little boxes back out onto the statistics pages.
+           I'm trying to get it to a better place and have more functionalities but I am slowly losing two things 
+           over the course of this project: ideas and motivation.
+           <hr>
+           Beyond this, I would like to give credit where credit is due. The base of this project came from a 
+           tutorial series on Youtube. That being the Django Tutorials series from Corey Schafer. This tutorial
+           helped me learn Django at a much deeper level than I thought I was capable of. These videos helped provided
+           me with beautiful CSS and Bootstrap classes, as well as help with the creation of the forms. If I could talk to him,
+           I would thank him because this series is so much better than the resources I was provided with to learn Django.
+        </p>
+    </div>
+    <div class="column">
+        <h2>About the Developer</h2>
+        <p>
+           Hello, my name is Sam and I am a Computer Science student from Adrian College.
+           I've always loved working with computers and this program has somewhat fulfilled my dreams.
+           I had a very slow start in the topic of computer science and programming. At my highschool, 
+           I started with basic HTML and CSS just like this little about page here. Even after all of
+           of these years working with programming and mark up languages, I'm still most afraid of 
+           CSS. I never managed to get it to cooperate with me but here I am. I really appreciate 
+           your time combing through my course project because I have put some good time into it.
+           It's not all mine or even that original, but we have to start from somewhere, don't we?
+           <hr>
+        </p>
+    </div>
+</div>
+{% endblock content %}
