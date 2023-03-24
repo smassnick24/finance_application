@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import statistics as stat
 
+@login_required
 def about_page(request):
     return render(request, "finance_app/about.html")
 
@@ -116,3 +117,23 @@ def purchase_statistics_page(request):
         "standard_deviation": purchase_std_dev,
     }
     return render(request, "finance_app/purchase_statistics.html", context)
+
+@login_required
+def income_charts(request):
+    labels = ["Brooklyn", "Adrian", "Onsted", "Tecuhmseh", "Jackson"]
+    data = [2050, 6589, 1069, 2154, 10762]
+    context = {
+        'labels': labels,
+        'data': data
+    }
+    return render(request, "finance_app/income_charts.html", context)
+
+@login_required
+def purchase_charts(request):
+    labels = ["Apples", "Oranges", "Pears", "Pineapples", "Kiwis"]
+    data = [20, 10, 5, 2, 43]
+    context = {
+        'labels': labels,
+        'data': data
+    }
+    return render(request, "finance_app/purchase_charts.html",context)
