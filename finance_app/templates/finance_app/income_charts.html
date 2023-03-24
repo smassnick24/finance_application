@@ -9,15 +9,20 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <script>
+
+    {% comment %} const chartLabels = {{labels}};
+    const chartData = {{data}}; {% endcomment %}
+
+
     const ctx = document.getElementById('myChart');
   
-    new Chart(ctx, {
+    ctx = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Onsted", "Adrian", "Brooklyn", "Jackson", "Tecumseh"],
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Population',
+          data: [100, 400, 250, 700, 300],
           borderWidth: 1
         }]
       },
@@ -29,6 +34,8 @@
         }
       }
     });
+
+
   </script>
 
 
