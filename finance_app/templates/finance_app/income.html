@@ -4,7 +4,7 @@
     <br>
     {% for income in incomes %}
         {% if income.owner == user %}
-            <article class="media content-section">
+            <article class="media content-section" aria-label="Container for Income">
                 <div class="media-body">
                     <div class="article-metadata">
                         <a class="mr-2" href="#">{{income.owner}}</a>

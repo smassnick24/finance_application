@@ -6,29 +6,41 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import statistics as stat
 
+
 @login_required
 def about_page(request):
+    """View to load the about page"""
     return render(request, "finance_app/about.html")
 
 
 @login_required
 def purchase_page(request):
+    """View to load the purchase page
+       loads context into the page for the pieces of data"""
     context = {
         "title": "Purchases",
         'purchases': reversed(Purchase.objects.all())
     }
     return render(request, "finance_app/purchases.html", context)
 
+
 @login_required
 def income_page(request):
+    """View loads into the income page
+       context loads the income objects into the html document for a nice, dynamic page"""
     context = {
         "title": "Income",
         'incomes': reversed(Income.objects.all())
     }
     return render(request, "finance_app/income.html", context)
 
+
 @login_required
 def register_purchase(request):
+    """ view to register purchase
+        this view functions differently depending on whether the request is POST or GET
+        if POST: register the data into the database and format it to be a Purchase
+        if GET: produce a page with the empty form"""
     if request.method == "POST":
         form = PurchaseForm(request.POST)
         if form.is_valid():
@@ -44,8 +56,13 @@ def register_purchase(request):
         form = PurchaseForm()
     return render(request, "finance_app/register_income_data.html", {"form": form})
 
+
 @login_required
 def register_income(request):
+    """ view to register income
+        this view functions differently depending on whether the request is POST or GET
+        if POST: register the data into the database and format it to be an Income
+        if GET: produce a page with the empty form"""
     if request.method == "POST":
         form = IncomeForm(request.POST)
         if form.is_valid():
@@ -60,6 +77,7 @@ def register_income(request):
     elif request.method =="GET":
         form = IncomeForm()
     return render(request, "finance_app/register_income_data.html", {"form": form})
+
 
 @login_required
 def income_statistics_page(request):
@@ -90,6 +108,7 @@ def income_statistics_page(request):
     }
     return render(request, "finance_app/income_statistics.html", context)
 
+
 @login_required
 def purchase_statistics_page(request):
     total_spent = 0
@@ -118,22 +137,34 @@ def purchase_statistics_page(request):
     }
     return render(request, "finance_app/purchase_statistics.html", context)
 
+
 @login_required
 def income_charts(request):
-    labels = ["Brooklyn", "Adrian", "Onsted", "Tecuhmseh", "Jackson"]
-    data = [2050, 6589, 1069, 2154, 10762]
+    labels = []
+    data = []
+    
+    for income in Income.objects.order_by("amount").filter(owner=request.user):
+        labels.append(income.income_source)
+        data.append(income.amount)
+    
     context = {
         'labels': labels,
         'data': data
     }
     return render(request, "finance_app/income_charts.html", context)
 
+
 @login_required
 def purchase_charts(request):
-    labels = ["Apples", "Oranges", "Pears", "Pineapples", "Kiwis"]
-    data = [20, 10, 5, 2, 43]
+    labels = []
+    data = []
+    
+    for purchase in Purchase.objects.order_by("amount").filter(owner=request.user):
+        labels.append(purchase.purchase_name)
+        data.append(purchase.amount)
+
     context = {
         'labels': labels,
         'data': data
     }
-    return render(request, "finance_app/purchase_charts.html",context)
+    return render(request, "finance_app/purchase_charts.html", context)

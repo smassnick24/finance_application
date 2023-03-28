@@ -2,27 +2,28 @@
 
 {% block content %}
 <h3>Income Charts</h3>
-<div>
-    <canvas id="myChart"></canvas>
+  <div>
+    <canvas id="myChart" aria-label="Income Bar Chart"></canvas>
   </div>
   
+
+
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <script>
-
-    {% comment %} const chartLabels = {{labels}};
-    const chartData = {{data}}; {% endcomment %}
-
 
     const ctx = document.getElementById('myChart');
   
     ctx = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["Onsted", "Adrian", "Brooklyn", "Jackson", "Tecumseh"],
+        labels: {{labels|safe}},
         datasets: [{
-          label: 'Population',
-          data: [100, 400, 250, 700, 300],
+          label: 'Money Received',
+          data: {{ data|safe }},
           borderWidth: 1
         }]
       },

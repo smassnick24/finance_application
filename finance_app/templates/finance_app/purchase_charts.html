@@ -3,7 +3,7 @@
 {% block content %}
 <h3>Purchase Charts</h3>
 <div>
-    <canvas id="myChart"></canvas>
+    <canvas id="myChart" aria-label="Purchase Bar Chart"></canvas>
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,10 +14,10 @@
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: {{labels|safe}},
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Money Spent',
+          data: {{data|safe}},
           borderWidth: 1
         }]
       },
