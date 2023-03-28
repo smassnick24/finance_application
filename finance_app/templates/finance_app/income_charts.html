@@ -2,10 +2,15 @@
 
 {% block content %}
 <h3>Income Charts</h3>
-  <div>
-    <canvas id="myChart" aria-label="Income Bar Chart"></canvas>
+<div class="chart-container">
+  <div id="chart1" class="container">
+    <canvas id="myBarChart" aria-label="Income Bar Chart"></canvas>
   </div>
-  
+  <br>
+  <div id="chart2" class="container">
+    <canvas id="myPieChart" aria-label="Income Pie Chart"></canvas>
+  </div>
+</div>
 
 
 
@@ -15,7 +20,7 @@
   
   <script>
 
-    const ctx = document.getElementById('myChart');
+    var ctx = document.getElementById('myBarChart');
   
     ctx = new Chart(ctx, {
       type: 'bar',
@@ -36,6 +41,25 @@
       }
     });
 
+    var pieChart = document.getElementById("myPieChart");
+
+    const data = {
+      labels: {{labels|safe}},
+      datasets: [{
+        label: "Money Received",
+        data: {{data|safe}},
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+    const config = {
+      type: "line",
+      data: data,
+    };
+
+    pieChart = new Chart(pieChart, config)
 
   </script>
 

@@ -2,6 +2,15 @@
 {% block content%}
     <h1 class="display-3">Purchases</h1>
     <br>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Total Spent</a>
+            </div>
+            <h3><a class="article-title" href="#">${{total|floatformat:-2}}</a></h3>
+        <div>
+    </article>
+    <br>
     {% for purchase in purchases %}
        {% if purchase.owner == user %}
         <article class="media content-section" aria-label="Container for Purchase">

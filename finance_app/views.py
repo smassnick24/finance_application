@@ -16,10 +16,13 @@ def about_page(request):
 @login_required
 def purchase_page(request):
     """View to load the purchase page
-       loads context into the page for the pieces of data"""
+       loads context into the page for the pieces of data
+    """
+    total = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
     context = {
         "title": "Purchases",
-        'purchases': reversed(Purchase.objects.all())
+        'purchases': reversed(Purchase.objects.all()),
+        'total': total
     }
     return render(request, "finance_app/purchases.html", context)
 
@@ -27,10 +30,13 @@ def purchase_page(request):
 @login_required
 def income_page(request):
     """View loads into the income page
-       context loads the income objects into the html document for a nice, dynamic page"""
+       context loads the income objects into the html document for a nice, dynamic page
+    """
+    total = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
     context = {
         "title": "Income",
-        'incomes': reversed(Income.objects.all())
+        'incomes': reversed(Income.objects.all()),
+        'total': total
     }
     return render(request, "finance_app/income.html", context)
 

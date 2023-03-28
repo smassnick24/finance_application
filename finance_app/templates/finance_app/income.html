@@ -1,6 +1,14 @@
 {% extends "finance_app/base.html"%}
 {% block content%}
     <h1 class="display-3">Income</h1>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Total Received</a>
+            </div>
+            <h3><a class="article-title" href="#">${{total|floatformat:-2}}</a></h3>
+        <div>
+    </article> 
     <br>
     {% for income in incomes %}
         {% if income.owner == user %}
