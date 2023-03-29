@@ -2,14 +2,25 @@
 
 {% block content %}
 <h3>Purchase Charts</h3>
-<div>
-    <canvas id="myChart" aria-label="Purchase Bar Chart"></canvas>
+<div class="chart-container">
+  <div id="chart1" class="container">
+    <canvas id="myBarChart" aria-label="Purchase Bar Chart"></canvas>
   </div>
+  <br>
+  <div id="chart2" class="container">
+    <canvas id="myPieChart" aria-label="Purchase Pie Chart"></canvas>
+  </div>
+</div>
   
+
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <script>
-    const ctx = document.getElementById('myChart');
+
+    var ctx = document.getElementById('myBarChart');
   
     new Chart(ctx, {
       type: 'bar',
@@ -29,6 +40,28 @@
         }
       }
     });
+
+    var pieChart = document.getElementById("myPieChart");
+
+    const data = {
+      labels: {{labels|safe}},
+      datasets: [{
+        label: "Money Spent",
+        data: {{data|safe}},
+        fill: false,
+        borderWidth: 1,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+    const config = {
+      type: "line",
+      data: data,
+    };
+
+    pieChart = new Chart(pieChart, config)
+
   </script>
 
 
