@@ -21,6 +21,8 @@ def purchase_page(request):
     total_pur = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
     total_inc = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
     net = total_inc - total_pur
+    if net < 0.001 and net > -0.001:
+        net = 0
     
     context = {
         "title": "Purchases",
@@ -39,6 +41,8 @@ def income_page(request):
     total_inc = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
     total_pur = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
     net = total_inc - total_pur
+    if net < 0.001 and net > -0.001:
+        net = 0
     
     context = {
         "title": "Income",

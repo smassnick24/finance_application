@@ -16,8 +16,10 @@
             </div>
             {% if net > 0 %}
                 <center><h3><a class="article-title" href="#" style="color: green;">${{net|floatformat:-2}}</a></h3></center>
-            {% else %}
+            {% elif net < 0 %}
                 <center><h3><a class="article-title" href="#" style="color: red;">${{net|floatformat:-2}}</a></h3></center>
+            {% else %}
+                <center><h3><a class="article-title" href="#" style="color: black;">${{net|floatformat:-2}}</a></h3></center>
             {% endif %}
         <div>
         <div>
