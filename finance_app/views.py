@@ -18,9 +18,10 @@ def purchase_page(request):
     """View to load the purchase page
        loads context into the page for the pieces of data
     """
-    total_pur = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
-    total_inc = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
+    total_pur = sum([purchase.amount for purchase in Purchase.objects.filter(owner=request.user)])
+    total_inc = sum([income.amount for income in Income.objects.filter(owner=request.user)])
     net = total_inc - total_pur
+    
     if net < 0.001 and net > -0.001:
         net = 0
     
@@ -38,9 +39,10 @@ def income_page(request):
     """View loads into the income page
        context loads the income objects into the html document for a nice, dynamic page
     """
-    total_inc = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
-    total_pur = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
+    total_inc = sum([income.amount for income in Income.objects.filter(owner=request.user)])
+    total_pur = sum([purchase.amount for purchase in Purchase.objects.filter(owner=request.user)])
     net = total_inc - total_pur
+    
     if net < 0.001 and net > -0.001:
         net = 0
     
@@ -102,9 +104,9 @@ def income_statistics_page(request):
     """View to calculate simple statistics on income"""
     total_received = 0
     amount_list = []
-    num_incomes = len(Income.objects.all().filter(owner=request.user))
+    num_incomes = len(Income.objects.filter(owner=request.user))
     
-    for income in Income.objects.all().filter(owner=request.user): # gathering data for computation
+    for income in Income.objects.filter(owner=request.user): # gathering data for computation
         total_received += income.amount
         amount_list.append(income.amount)
         
@@ -131,7 +133,7 @@ def income_statistics_page(request):
 def purchase_statistics_page(request):
     total_spent = 0
     amount_list = []
-    num_purchases = len(Purchase.objects.all().filter(owner=request.user))
+    num_purchases = len(Purchase.objects.filter(owner=request.user))
     
     for purchase in Purchase.objects.all().filter(owner=request.user): # gathering data for computation
         total_spent += purchase.amount
