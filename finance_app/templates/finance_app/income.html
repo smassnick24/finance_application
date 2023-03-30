@@ -9,7 +9,6 @@
             <center><h3><a class="article-title" href="#">${{total|floatformat:-2}}</a></h3></center>
         <div>
     </article> 
-    <br>
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
@@ -22,6 +21,7 @@
             {% endif %}
         <div>
     </article> 
+    <br>
     <br>
     {% for income in incomes %}
         {% if income.owner == user %}
