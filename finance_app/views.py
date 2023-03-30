@@ -18,11 +18,15 @@ def purchase_page(request):
     """View to load the purchase page
        loads context into the page for the pieces of data
     """
-    total = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
+    total_pur = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
+    total_inc = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
+    net = total_inc - total_pur
+    
     context = {
         "title": "Purchases",
         'purchases': reversed(Purchase.objects.all()),
-        'total': total
+        'total': total_pur,
+        'net': net
     }
     return render(request, "finance_app/purchases.html", context)
 
@@ -32,11 +36,15 @@ def income_page(request):
     """View loads into the income page
        context loads the income objects into the html document for a nice, dynamic page
     """
-    total = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
+    total_inc = sum([income.amount for income in Income.objects.all().filter(owner=request.user)])
+    total_pur = sum([purchase.amount for purchase in Purchase.objects.all().filter(owner=request.user)])
+    net = total_inc - total_pur
+    
     context = {
         "title": "Income",
         'incomes': reversed(Income.objects.all()),
-        'total': total
+        'total': total_inc,
+        'net': net
     }
     return render(request, "finance_app/income.html", context)
 

@@ -7,9 +7,23 @@
             <div class="article-metadata">
                 <center><a class="mr-2" href="#">Total Spent</a></center>
             </div>
-            <center><h3><a class="article-title" href="#">${{total|floatformat:-2}}</a></h3></center>
+            <center><h3><a class="article-title" href="#" >${{total|floatformat:-2}}</a></h3></center>
         <div>
     </article>
+    <br>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <center><a class="mr-2" href="#">Net</a></center>
+            </div>
+            {% if net > 0 %}
+                <center><h3><a class="article-title" href="#" style="color: green;">${{net|floatformat:-2}}</a></h3></center>
+            {% else %}
+                <center><h3><a class="article-title" href="#" style="color: red;">${{net|floatformat:-2}}</a></h3></center>
+            {% endif %}
+        <div>
+        <div>
+    </article> 
     <br>
     {% for purchase in purchases %}
        {% if purchase.owner == user %}
