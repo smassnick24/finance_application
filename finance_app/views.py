@@ -188,3 +188,8 @@ def purchase_charts(request):
         'data': data
     }
     return render(request, "finance_app/purchase_charts.html", context)
+
+
+@login_required
+def landing(request):
+    return render(request, "finance_app/landing_page.html", {'first_name': request.user.first_name, "last_name": request.user.last_name})
