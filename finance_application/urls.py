@@ -4,6 +4,9 @@ from django.urls import path, include
 from users import views as user_views
 from finance_app import views as finance_views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path("", include("finance_app.urls")),
     path('register/', user_views.register, name="register"),
@@ -12,4 +15,9 @@ urlpatterns = [
     path('new_income/', finance_views.register_income, name="register_new_income"),
     path('new_purchase/', finance_views.register_purchase, name="register_new_purchase"),
     path('admin/', admin.site.urls),
+    path('profile/', user_views.profile, name="profile"),
+    
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

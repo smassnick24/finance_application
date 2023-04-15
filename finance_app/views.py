@@ -109,24 +109,38 @@ def income_statistics_page(request):
     for income in Income.objects.filter(owner=request.user): # gathering data for computation
         total_received += income.amount
         amount_list.append(income.amount)
-        
+            
     amount_list.sort()
     
-    income_mean = stat.mean(amount_list) # calculating the mean
-    income_median = stat.median(amount_list) # calculating the median
-    income_variance = stat.variance(amount_list) # calculating the variance
-    income_std_dev = stat.stdev(amount_list) # calculating standard deviation
+    if num_incomes < 2:
+        context = {
+            "title": "Statistics",
+            "total_received": total_received,
+            "mean_received": 0,
+            "num_incomes": num_incomes,
+            "median": 0,
+            "variance": 0,
+            "standard_deviation": 0,
+        }
+        return render(request, "finance_app/income_statistics.html", context)
     
-    context = {
-        "title": "Statistics",
-        "total_received": total_received,
-        "mean_received": income_mean,
-        "num_incomes": num_incomes,
-        "median": income_median,
-        "variance": income_variance,
-        "standard_deviation": income_std_dev,
-    }
-    return render(request, "finance_app/income_statistics.html", context)
+    else:
+        
+        income_mean = stat.mean(amount_list) # calculating the mean
+        income_median = stat.median(amount_list) # calculating the median
+        income_variance = stat.variance(amount_list) # calculating the variance
+        income_std_dev = stat.stdev(amount_list) # calculating standard deviation
+        
+        context = {
+            "title": "Statistics",
+            "total_received": total_received,
+            "mean_received": income_mean,
+            "num_incomes": num_incomes,
+            "median": income_median,
+            "variance": income_variance,
+            "standard_deviation": income_std_dev,
+        }
+        return render(request, "finance_app/income_statistics.html", context)
 
 
 @login_required
@@ -141,21 +155,35 @@ def purchase_statistics_page(request):
         
     amount_list.sort()
     
-    purchase_mean = stat.mean(amount_list) # calculating the mean
-    purchase_median = stat.median(amount_list) # calculating the median
-    purchase_variance = stat.variance(amount_list) # calculating the variance
-    purchase_std_dev = stat.stdev(amount_list) # calculating standard deviation
+    if num_purchases < 2:
+        context = {
+            "title": "Statistics",
+            "total_spent": total_spent,
+            "num_purchases": num_purchases,
+            "mean_spent": 0,
+            "median": 0,
+            "variance": 0,
+            "standard_deviation": 0,
+        }
+        return render(request, "finance_app/purchase_statistics.html", context)
     
-    context = {
-        "title": "Statistics",
-        "total_spent": total_spent,
-        "num_purchases": num_purchases,
-        "mean_spent": purchase_mean,
-        "median": purchase_median,
-        "variance": purchase_variance,
-        "standard_deviation": purchase_std_dev,
-    }
-    return render(request, "finance_app/purchase_statistics.html", context)
+    else:
+        
+        purchase_mean = stat.mean(amount_list) # calculating the mean
+        purchase_median = stat.median(amount_list) # calculating the median
+        purchase_variance = stat.variance(amount_list) # calculating the variance
+        purchase_std_dev = stat.stdev(amount_list) # calculating standard deviation
+        
+        context = {
+            "title": "Statistics",
+            "total_spent": total_spent,
+            "num_purchases": num_purchases,
+            "mean_spent": purchase_mean,
+            "median": purchase_median,
+            "variance": purchase_variance,
+            "standard_deviation": purchase_std_dev,
+        }
+        return render(request, "finance_app/purchase_statistics.html", context)
 
 
 @login_required

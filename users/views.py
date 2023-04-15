@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
 
@@ -14,3 +13,9 @@ def register(request):
     elif request.method =="GET":
         form = UserRegisterForm()
     return render(request, "users/register.html", {"form": form})
+
+def profile(request):
+    context = {
+        "user": request.user
+    }
+    return render(request, "users/profile.html", context)
