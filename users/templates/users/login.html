@@ -9,11 +9,11 @@
                 {{ form | crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign In</button>
+                <button class="btn btn-outline-dark" type="submit">Sign In</button>
             </div>
         </form>
         <div class="border-top pt-3">
-            <small class="text-muted">Not Registered?<a href="{% url 'register' %}" class="ml-2">Sign Up Here</a></small>
+            <small class="text-muted">Not Registered?<a href="{% url 'register' %}" style="color: #0a4a91;" class="ml-2">Sign Up Here</a></small>
         </div>    
     </div>
 {% endblock content %}

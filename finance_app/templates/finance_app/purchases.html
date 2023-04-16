@@ -1,28 +1,27 @@
 {% extends "finance_app/base.html"%}
 {% block content%}
-    <center><h1 class="display-3">Purchases</h1></center>
+    <h1 class="display-3 center">Purchases</h1>
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
-                <center><a class="mr-2" href="#">Total Spent</a></center>
+                <a class="mr-2 center"  style="color: #0a4a91;" href="#">Total Spent</a>
             </div>
-            <center><h3><a class="article-title" href="{% url 'purchase_statistics_page' %}" >${{total|floatformat:-2}}</a></h3></center>
-        <div>
+            <h3><a class="article-title center" href="{% url 'purchase_statistics_page' %}" >${{total|floatformat:-2}}</a></h3>
+        </div>
     </article>
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
-                <center><a class="mr-2" href="#">Net</a></center>
+                <a class="mr-2 center" style="color: #0a4a91;" href="#">Net</a>
             </div>
             {% if net > 0 %}
-                <center><h3><a class="article-title" href="#" style="color: green;">${{net|floatformat:-2}}</a></h3></center>
+                <h3><a class="article-title center" href="#" style="color: green;">${{net|floatformat:-2}}</a></h3>
             {% elif net < 0 %}
-                <center><h3><a class="article-title" href="#" style="color: red;">${{net|floatformat:-2}}</a></h3></center>
+                <h3><a class="article-title center" href="#" style="color: red;">${{net|floatformat:-2}}</a></h3>
             {% else %}
-                <center><h3><a class="article-title" href="#" style="color: black;">${{net|floatformat:-2}}</a></h3></center>
+                <h3><a class="article-title center" href="#" style="color: black;">${{net|floatformat:-2}}</a></h3>
             {% endif %}
-        <div>
-        <div>
+        </div>
     </article> 
     <br>
     <br>
@@ -31,12 +30,12 @@
         <article class="media content-section" aria-label="Container for Purchase">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{purchase.owner}}</a>
+                    <a class="mr-2" href="#" style="color: #0a4a91;">{{purchase.owner}}</a>
                     <small class="text-muted">{{purchase.date_purchased}}</small>
                 </div>
                 <h2><a class="article-title" href="#">{{purchase.purchase_name}}</a></h2>
                 <p class="article-content"><strong>{{purchase.purchase_description}}</strong> with a total of ${{purchase.amount}}</p>
-            <div>
+            </div>
         </article> 
        {% endif %}
     {% endfor %}
